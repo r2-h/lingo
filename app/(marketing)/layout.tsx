@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 import { Footer } from "./_components/Footer"
 import { Header } from "./_components/Header"
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+export default function MarketingLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
