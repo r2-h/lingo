@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import { Sidebar } from "@/components/Sidebar"
-import { MobileHeader } from "@/app/(main)/learn/_components/MobileHeader"
+import { MobileHeader } from "@/components/MobileHeader"
 
 export default function MainLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (

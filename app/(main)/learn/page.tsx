@@ -3,13 +3,14 @@ import { FeedWrapper } from "@/components/FeedWrapper"
 
 import { UserProgress } from "@/components/UserProgress"
 import { FeedHeader } from "@/app/(main)/learn/_components/FeedHeader"
-import { getUserProgress } from "@/db/queries"
+import { getUnits, getUserProgress } from "@/db/queries"
 import { redirect } from "next/navigation"
+import { Unit } from "./_components/Unit"
 
 const LearnPage = async () => {
-  const userProgress = await getUserProgress()
+  const [userProgress, units] = await Promise.all([getUserProgress(), getUnits()])
 
-  if (!userProgress || !userProgress.activeCourseId || !userProgress.activeCourse ) {
+  if (!userProgress || !userProgress.activeCourseId || !userProgress.activeCourse) {
     redirect("/courses")
   }
 
@@ -25,10 +26,19 @@ const LearnPage = async () => {
       </StickyWrapper>
       <FeedWrapper>
         <FeedHeader title={userProgress.activeCourse.title} />
-        <div className="space-y-4">
-          <div className="h-[700px] bg-blue-500 w-full" />
-          <div className="h-[700px] bg-blue-500 w-full" />
-        </div>
+        {units.map((unit) => (
+          <div className="mb-10" key={unit.id}>
+            <Unit
+              id={unit.id}
+              order={unit.order}
+              description={unit.description}
+              title={unit.title}
+              lessons={unit.lessons}
+              activeLesson={undefined}
+              activeLessonPercentage={0}
+            />
+          </div>
+        ))}
       </FeedWrapper>
     </div>
   )
