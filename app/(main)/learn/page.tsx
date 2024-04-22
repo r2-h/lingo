@@ -3,12 +3,17 @@ import { FeedWrapper } from "@/components/FeedWrapper"
 
 import { UserProgress } from "@/components/UserProgress"
 import { FeedHeader } from "@/app/(main)/learn/_components/FeedHeader"
-import { getUnits, getUserProgress } from "@/db/queries"
+import { getCourseProgress, getLessonPercentage, getUnits, getUserProgress } from "@/db/queries"
 import { redirect } from "next/navigation"
 import { Unit } from "./_components/Unit"
 
 const LearnPage = async () => {
-  const [userProgress, units] = await Promise.all([getUserProgress(), getUnits()])
+  const [userProgress, units, courseProgress, lessonPercentage] = await Promise.all([
+    getUserProgress(),
+    getUnits(),
+    getCourseProgress(),
+    getLessonPercentage(),
+  ])
 
   if (!userProgress || !userProgress.activeCourseId || !userProgress.activeCourse) {
     redirect("/courses")
@@ -34,8 +39,8 @@ const LearnPage = async () => {
               description={unit.description}
               title={unit.title}
               lessons={unit.lessons}
-              activeLesson={undefined}
-              activeLessonPercentage={0}
+              activeLesson={courseProgress?.activeLesson}
+              activeLessonPercentage={lessonPercentage}
             />
           </div>
         ))}
