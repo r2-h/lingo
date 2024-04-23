@@ -5,6 +5,7 @@ import { Header } from "./Header"
 import { useState } from "react"
 import { QuestionBubble } from "./QuestionBubble"
 import { Challenge } from "./Challenge"
+import { Footer } from "./Footer"
 
 type Props = {
   initialLessonId: number
@@ -31,8 +32,17 @@ export const Quiz = ({
     const uncompletedIndex = challenges.findIndex((challenge) => !challenge.completed)
     return uncompletedIndex === -1 ? 0 : uncompletedIndex
   })
+  const [selectedOption, setSelectedOption] = useState<number>()
+  const [status, setStatus] = useState<"correct" | "wrong" | "none">("none")
+
   const challenge = challenges[activeIndex]
   const options = challenge?.challengeOptions ?? []
+
+  const onSelect = (id: number) => {
+    if (status !== "none") return
+
+    setSelectedOption(id)
+  }
 
   const title = challenge.type === "ASSIST" ? "Select the correct meaning" : challenge.question
 
@@ -53,9 +63,9 @@ export const Quiz = ({
               {challenge.type === "ASSIST" && <QuestionBubble question={challenge.question} />}
               <Challenge
                 options={options}
-                onSelect={() => {}}
-                status="correct"
-                selectedOption={undefined}
+                onSelect={onSelect}
+                status={status}
+                selectedOption={selectedOption}
                 disabled={false}
                 type={challenge.type}
               />
@@ -63,6 +73,12 @@ export const Quiz = ({
           </div>
         </div>
       </div>
+      <Footer
+        disabled={!selectedOption}
+        status={ status}
+        onCheck={() => {}}
+        lessonId={true} //
+      />
     </>
   )
 }
