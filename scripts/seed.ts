@@ -92,71 +92,94 @@ const main = async () => {
         id: 3,
       },
     ])
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 1,
+        correct: true,
+        text: "el hombre",
+        audioSrc: "es_man.mp3",
+        imageSrc: "/man.svg",
+      },
+      {
+        challengeId: 1,
+        correct: false,
+        text: "la mujer",
+        audioSrc: "es_woman.mp3",
+        imageSrc: "/woman.svg",
+      },
+      {
+        challengeId: 1,
+        correct: false,
+        text: "el robot",
+        audioSrc: "es_robot.mp3",
+        imageSrc: "/robot.svg",
+      },
+    ])
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 2,
+        correct: true,
+        text: "el hombre",
+        audioSrc: "es_man.mp3",
+      },
+      {
+        challengeId: 2,
+        correct: false,
+        text: "la mujer",
+        audioSrc: "es_woman.mp3",
+      },
+      {
+        challengeId: 2,
+        correct: false,
+        text: "el robot",
+        audioSrc: "es_robot.mp3",
+      },
+    ])
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 3,
+        correct: false,
+        text: "el hombre",
+        audioSrc: "es_man.mp3",
+        imageSrc: "/man.svg",
+      },
+      {
+        challengeId: 3,
+        correct: false,
+        text: "la mujer",
+        audioSrc: "es_woman.mp3",
+        imageSrc: "/woman.svg",
+      },
+      {
+        challengeId: 3,
+        correct: true,
+        text: "el robot",
+        audioSrc: "es_robot.mp3",
+        imageSrc: "/robot.svg",
+      },
+    ])
 
-    await db.insert(schema.challengeOptions).values([
+    await db.insert(schema.challenges).values([
       {
-        challengeId: 1,
-        correct: true,
-        text: "el hombre",
-        audioSrc: "es_man.mp3",
-        imageSrc: "/man.svg",
+        lessonId: 2,
+        order: 1,
+        question: 'Which one of these is "the man" ?',
+        type: "SELECT",
+        id: 4,
       },
       {
-        challengeId: 1,
-        correct: false,
-        text: "la mujer",
-        audioSrc: "es_woman.mp3",
-        imageSrc: "/woman.svg",
+        lessonId: 2,
+        order: 2,
+        question: '"the man" ?',
+        type: "ASSIST" ,
+        id: 5,
       },
       {
-        challengeId: 1,
-        correct: false,
-        text: "el robot",
-        audioSrc: "es_robot.mp3",
-        imageSrc: "/robot.svg",
-      },
-    ])
-    await db.insert(schema.challengeOptions).values([
-      {
-        challengeId: 2,
-        correct: true,
-        text: "el hombre",
-        audioSrc: "es_man.mp3",
-      },
-      {
-        challengeId: 2,
-        correct: false,
-        text: "la mujer",
-        audioSrc: "es_woman.mp3",
-      },
-      {
-        challengeId: 2,
-        correct: false,
-        text: "el robot",
-        audioSrc: "es_robot.mp3",
-      },
-    ])
-    await db.insert(schema.challengeOptions).values([
-      {
-        challengeId: 3,
-        correct: false,
-        text: "el hombre",
-        audioSrc: "es_man.mp3",
-        imageSrc: "/man.svg",
-      },
-      {
-        challengeId: 3,
-        correct: false,
-        text: "la mujer",
-        audioSrc: "es_woman.mp3",
-        imageSrc: "/woman.svg",
-      },
-      {
-        challengeId: 3,
-        correct: true,
-        text: "el robot",
-        audioSrc: "es_robot.mp3",
-        imageSrc: "/robot.svg",
+        lessonId: 2,
+        order: 3,
+        question: 'Which one of these is "the robot" ?',
+        type: "SELECT",
+        id: 6,
       },
     ])
 
