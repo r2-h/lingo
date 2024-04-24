@@ -56,10 +56,11 @@ export const getUnits = cache(async () => {
         return { ...lesson, completed: false }
       }
       const allCompletedChallenges = lesson.challenges.every((challenge) => {
-        return
-        challenge.challengeProgress &&
+        return (
+          challenge.challengeProgress &&
           challenge.challengeProgress.length > 0 &&
           challenge.challengeProgress.every((progress) => progress.completed)
+        )
       })
       return { ...lesson, completed: allCompletedChallenges }
     })

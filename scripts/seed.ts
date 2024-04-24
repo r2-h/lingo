@@ -77,6 +77,20 @@ const main = async () => {
         type: "SELECT",
         id: 1,
       },
+      {
+        lessonId: 1,
+        order: 2,
+        question: '"the man" ?',
+        type: "ASSIST",
+        id: 2,
+      },
+      {
+        lessonId: 1,
+        order: 3,
+        question: 'Which one of these is "the robot" ?',
+        type: "SELECT",
+        id: 3,
+      },
     ])
 
     await db.insert(schema.challengeOptions).values([
@@ -86,7 +100,6 @@ const main = async () => {
         text: "el hombre",
         audioSrc: "es_man.mp3",
         imageSrc: "/man.svg",
-        id: 1,
       },
       {
         challengeId: 1,
@@ -94,7 +107,6 @@ const main = async () => {
         text: "la mujer",
         audioSrc: "es_woman.mp3",
         imageSrc: "/woman.svg",
-        id: 2,
       },
       {
         challengeId: 1,
@@ -102,7 +114,49 @@ const main = async () => {
         text: "el robot",
         audioSrc: "es_robot.mp3",
         imageSrc: "/robot.svg",
-        id: 3,
+      },
+    ])
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 2,
+        correct: true,
+        text: "el hombre",
+        audioSrc: "es_man.mp3",
+      },
+      {
+        challengeId: 2,
+        correct: false,
+        text: "la mujer",
+        audioSrc: "es_woman.mp3",
+      },
+      {
+        challengeId: 2,
+        correct: false,
+        text: "el robot",
+        audioSrc: "es_robot.mp3",
+      },
+    ])
+    await db.insert(schema.challengeOptions).values([
+      {
+        challengeId: 3,
+        correct: false,
+        text: "el hombre",
+        audioSrc: "es_man.mp3",
+        imageSrc: "/man.svg",
+      },
+      {
+        challengeId: 3,
+        correct: false,
+        text: "la mujer",
+        audioSrc: "es_woman.mp3",
+        imageSrc: "/woman.svg",
+      },
+      {
+        challengeId: 3,
+        correct: true,
+        text: "el robot",
+        audioSrc: "es_robot.mp3",
+        imageSrc: "/robot.svg",
       },
     ])
 

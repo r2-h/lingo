@@ -14,6 +14,7 @@ import {
   DialogTitle,
 } from "../ui/dialog"
 import Image from "next/image"
+import { DialogClose } from "@radix-ui/react-dialog"
 
 export const ExitModal = () => {
   const router = useRouter()
@@ -43,17 +44,19 @@ export const ExitModal = () => {
             <Button variant="primary" className="w-full" size="lg" onClick={close}>
               Keep learning
             </Button>
-            <Button
-              variant="dangerOutline"
-              className="w-full"
-              size="lg"
-              onClick={() => {
-                close
-                router.push("/learn")
-              }}
-            >
-              End session
-            </Button>
+            <DialogClose>
+              <Button
+                variant="dangerOutline"
+                className="w-full"
+                size="lg"
+                onClick={() => {
+                  close
+                  router.push("/learn")
+                }}
+              >
+                End session
+              </Button>
+            </DialogClose>
           </div>
         </DialogFooter>
       </DialogContent>
